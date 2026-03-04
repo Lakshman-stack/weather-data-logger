@@ -1,0 +1,41 @@
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/history">History</a>
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Weather History</h1>
+
+    {% if records %}
+    <table border="1">
+        <tr>
+            <th>Temperature (°C)</th>
+            <th>Humidity (%)</th>
+            <th>Pressure (hPa)</th>
+            <th>Timestamp</th>
+        </tr>
+
+        {% for record in records %}
+        <tr>
+            <td>{{ record.temperature }}</td>
+            <td>{{ record.humidity }}</td>
+            <td>{{ record.pressure }}</td>
+            <td>{{ record.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No weather data available.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
